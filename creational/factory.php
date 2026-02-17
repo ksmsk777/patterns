@@ -4,11 +4,6 @@ class Worker
 {
   private string $name;
   
-//   public function __construct(string $name)
-// {
-//   $this->name = $name;
-// }  
-
 
   /**
    * Get the value of name

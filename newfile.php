@@ -1,1 +1,0 @@
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas rerum repudiandae, quidem iusto repellendus, accusamus consequuntur nobis, magnam ipsa quo est dignissimos tenetur. Ipsam molestiae natus nisi perspiciatis porro impedit cupiditate et, accusamus minus voluptas ratione aut facere animi quis?
