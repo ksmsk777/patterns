@@ -1,11 +1,11 @@
 <?php
 
-interface Worker1
+interface Worker
 {
-  public function work();
+  public function work(); 
 }
 
-class Developer implements Worker1
+class Developer implements Worker
 {
   public function work()
   {
@@ -13,7 +13,7 @@ class Developer implements Worker1
   }
 }
 
-class Designer implements Worker1
+class Designer implements Worker
 {
   public function work()
   {
@@ -21,12 +21,12 @@ class Designer implements Worker1
   }
 }
 
-interface Worker1Factory
+interface WorkerFactory
  {
     public static function make();
  }
 
-class DeveloperFactory implements Worker1Factory
+class DeveloperFactory implements WorkerFactory
  {
     public static function make()
     {
@@ -34,7 +34,7 @@ class DeveloperFactory implements Worker1Factory
       
     }
  }
-class DesignerFactory implements Worker1Factory
+class DesignerFactory implements WorkerFactory
  {
     public static function make()
     {

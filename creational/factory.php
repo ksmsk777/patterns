@@ -1,39 +1,39 @@
 <?php
 
-class Worker
-{
-  private string $name;
+// class Worker
+// {
+//   private string $name;
   
 
-  /**
-   * Get the value of name
-   */ 
-  public function getName() : string
-  {
-    return $this->name;
-  }
+//   /**
+//    * Get the value of name
+//    */ 
+//   public function getName() : string
+//   {
+//     return $this->name;
+//   }
 
-  /**
-   * Set the value of name
-   *
-   * @return  self
-   */ 
-  public function setName($name): void
-  {
-    $this->name = $name;
+//   /**
+//    * Set the value of name
+//    *
+//    * @return  self
+//    */ 
+//   public function setName($name): void
+//   {
+//     $this->name = $name;
 
-  }
-}
+//   }
+// }
 
-class WorkerFactory 
-{
-  public static function make() : Worker
-  {
-    return new Worker();
+// class WorkerFactory 
+// {
+//   public static function make() : Worker
+//   {
+//     return new Worker();
     
-  }
-} 
+//   }
+// } 
 
-$worker = WorkerFactory::make();
-$worker->setName('Boris');
-var_dump($worker->getName());
+// $worker = WorkerFactory::make();
+// $worker->setName('Boris');
+// var_dump($worker->getName());
