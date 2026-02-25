@@ -10,11 +10,16 @@
  * Если папки не указаны, используется текущая директория.
  */
 
+$folder_name = '../data/';
+$outputFile = $folder_name;
+
+
+
 // Получаем аргументы командной строки
 if (isset($argv) && count($argv) > 1) {
     $folders = array_slice($argv, 1); // пропускаем имя скрипта
 } else {
-    $folders = ['../data/SMI/']; // текущая папка по умолчанию
+    $folders = [$folder_name]; // текущая папка по умолчанию
 }
 
 $allFiles = [];
@@ -87,10 +92,82 @@ foreach ($allFiles as $filename) {
 $allLinks = array_unique($allLinks);
 sort($allLinks);
 
-// Сохраняем в файл
-$outputFile = '../data/SMI/links.txt';
-if (file_put_contents($outputFile, implode("\n", $allLinks)) !== false) {
-    echo "Готово! Найдено ссылок: " . count($allLinks) . ". Результат сохранён в файл '$outputFile'.\n";
-} else {
-    echo "Ошибка при записи в файл '$outputFile'.\n";
+// Сохраняем в файл с проверкой на уникальность
+$outputFile = $folder_name . 'links.txt';
+$newLinks = $allLinks;
+
+// Убираем возможные дубликаты внутри самого массива новых ссылок
+$newLinks = array_unique($newLinks);
+
+// Читаем существующие ссылки из файла (если файл существует)
+$existingLinks = [];
+if (file_exists($outputFile)) {
+    $fileContent = file($outputFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    if ($fileContent !== false) {
+        $existingLinks = $fileContent;
+    }
 }
+
+// Оставляем только те ссылки, которых ещё нет в файле
+$linksToAdd = array_diff($newLinks, $existingLinks);
+
+if (empty($linksToAdd)) {
+    echo "Новых уникальных ссылок не найдено. Файл '$outputFile' остался без изменений.\n";
+} else {
+    // Добавляем новые ссылки в конец файла
+    $content = implode("\n", $linksToAdd) . "\n";
+    if (file_put_contents($outputFile, $content, FILE_APPEND | LOCK_EX) !== false) {
+        echo "Готово! Добавлено новых уникальных ссылок: " . count($linksToAdd) . ". Результат добавлен в файл '$outputFile'.\n";
+    } else {
+        echo "Ошибка при добавлении в файл '$outputFile'.\n";
+    }
+}
+
+
+/////////////////////////// 
+// Теперь удалим все html файлы из папки
+
+// Укажите путь к папке, в которой нужно удалить файлы
+$folder = $folder_name; // например, папка 'files' в текущей директории
+
+// Проверяем, существует ли папка
+if (!is_dir($folder)) {
+    die("Ошибка: Папка '$folder' не найдена.");
+}
+
+// Получаем список всех файлов .html и .htm
+$files = glob($folder . '/*.{html,htm}', GLOB_BRACE);
+
+if (empty($files)) {
+    echo "Файлы с расширениями .html и .htm не найдены.";
+    exit;
+}
+
+// Выводим список файлов, которые будут удалены (для проверки)
+echo "Будут удалены следующие файлы:\n";
+foreach ($files as $file) {
+    echo $file . "\n";
+}
+
+// Запрашиваем подтверждение (если скрипт запущен из консоли)
+if (PHP_SAPI === 'cli') {
+    echo "Продолжить удаление? (y/n): ";
+    $handle = fopen('php://stdin', 'r');
+    $answer = trim(fgets($handle));
+    if ($answer !== 'y') {
+        echo "Операция отменена.\n";
+        exit;
+    }
+}
+
+// Удаляем файлы
+$deletedCount = 0;
+foreach ($files as $file) {
+    if (is_file($file) && unlink($file)) {
+        $deletedCount++;
+    } else {
+        echo "Не удалось удалить: $file\n";
+    }
+}
+
+echo "Удалено файлов: $deletedCount\n";

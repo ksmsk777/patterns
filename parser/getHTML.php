@@ -2,13 +2,18 @@
 /**
  * Скрипт для скачивания страниц с пагинацией вида domen.ru/cars/{i}.html
  * Сохраняет файлы в заданную папку.
+ * 
+ * 
+ * 
+ * https://top.mail.ru/Rating/World/Today/Visitors/
+ * https://top.mail.ru/Rating/Business/Today/Visitors/
  */
 
 // ---------- НАСТРОЙКИ ----------
-$baseUrl = 'https://top.mail.ru/Rating/MassMedia/Today/Visitors/';   // Базовый URL (без номера страницы)
+$baseUrl = 'https://top.mail.ru/Rating/Business/Today/Visitors/';   // Базовый URL (без номера страницы)
 $start = 1;                           // Начальная страница
-$end = 20;                            // Конечная страница
-$folder = '../data/SMI';          // Папка для сохранения файлов
+$end = 10;                            // Конечная страница
+$folder = '../data';          // Папка для сохранения файлов
 // --------------------------------
 
 // Создаём папку, если её нет
