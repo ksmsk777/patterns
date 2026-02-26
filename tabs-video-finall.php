@@ -5,29 +5,27 @@
 
 <div class="tabs wow fadeInUp" data-wow-duration="6s">
   <button class="tab-button active" data-tab="tab1">Видео</button>
-  <button class="tab-button" data-tab="tab2">youtube</button>
+  <button class="tab-button" data-tab="tab2">YouTube</button>
 </div>
 
 <div class="tab-content">
   <!-- Вкладка с локальными видео -->
   <div class="tab-pane active" id="tab1">
     <div class="row" style="text-align:center; border-radius:3px; border:0px solid #ccc; padding:16px;">
-      <div class="video-container">
-        <!-- Первое видео -->
-        <div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUp" style="margin-bottom:34px; margin-top:25px;">
-          <div style="margin-bottom:10px;">Основные Принципы Тонировки Стекол Автомобиля от Профессионального Тонировщика!</div>
-          <video style="border-radius:5px;" class="video-js" controls preload="auto" poster="/videos/tonirovka/22.jpg" data-setup='{ "fluid": true }'>
-            <source src="/videos/tonirovka/tonir1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <!-- Второе видео -->
-        <div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUp" style="margin-bottom:10px; margin-top:25px;">
-          <div style="margin-bottom:10px;">Как затонировать автомобиль своими руками? Обучающее видео</div>
-          <video style="border-radius:5px;" class="video-js" controls preload="auto" poster="/videos/tonirovka/444.jpg" data-setup='{ "fluid": true }'>
-            <source src="/videos/tonirovka/tonir1.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div> <!-- .video-container -->
+      <!-- Первое видео -->
+      <div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUp" style="margin-top:25px;">
+        <div id="Title1" class="video-my-title">Основные принципы тонировки стекол автомобиля от профессионального Тонировщика!</div>
+        <video class="video-js" controls preload="auto" poster="/videos/tonirovka/22.jpg" data-setup='{ "fluid": true }'>
+          <source src="/videos/tonirovka/tonir1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <!-- Второе видео -->
+      <div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUp" style="margin-top:25px;">
+        <div id="Title2" class="video-my-title">Как затонировать автомобиль своими руками? Обучающее видео</div>
+        <video class="video-js" controls preload="auto" poster="/videos/tonirovka/221.jpg" data-setup='{ "fluid": true }'>
+          <source src="/videos/tonirovka/2.mp4" type="video/mp4">
+        </video>
+      </div>
     </div> <!-- .row -->
   </div> <!-- #tab1 -->
 
@@ -73,11 +71,12 @@
 </script>
 
 <style>
+  /* Общие стили для вкладок */
   .tab-button {
     padding: 5px 5px;
     background: #eee;
     color: #141414;
-    border: 0px solid #ccc;
+    border: 0 solid #ccc;
     cursor: pointer;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -90,8 +89,6 @@
   }
 
   .tab-content {
-    /*border: 1px solid #d31c30;
-    border-radius: 5px;*/
     padding: 1px;
     margin-top: -1px;
   }
@@ -104,14 +101,11 @@
     display: block;
   }
 
-  .video-container {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
+  /* Видеоплеер */
   .video-js {
     color: red;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 
   .video-js .vjs-big-play-button {
@@ -130,4 +124,53 @@
     background-color: rgb(112 112 112 / 50%);
     transition: all 0s;
   }
+
+  /* Выравнивание видео по нижнему краю при разной длине заголовков */
+  .tab-pane.active .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tab-pane.active .row > [class*="col-"] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tab-pane.active .row > [class*="col-"] video {
+    margin-top: auto;
+    width: 100%; /* чтобы видео занимало всю ширину колонки */
+  }
+/* Колонка – флекс-контейнер, заголовок и видео разделяем space-between */
+.tab-pane.active .row > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* заголовок сверху, видео снизу */
+}
+
+/* Контейнер, который создаёт Video.js, должен занимать всю доступную ширину и при необходимости растягиваться */
+.tab-pane.active .row > [class*="col-"] .video-js {
+  width: 100% !important;   
+  flex-grow: 1;            
+  align-self: stretch;      
+  position: relative;       
+  height: auto;           
+}
+
+.tab-pane.active .row > [class*="col-"] .video-js .vjs-tech {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.video-my-title
+{
+    font-size: 1.2em;
+    background: #000;
+    color: #fff;
+    padding: 6px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    }
 </style>
+
