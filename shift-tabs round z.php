@@ -1,4 +1,6 @@
 
+// Круглая кнока плэй
+
 
 <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
@@ -14,13 +16,13 @@
 <div class="row " style="text-align:center;  border-radius:3px; 
 border: 0px solid #ccc; padding:16px;">
  <div class="video-container">
-<div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUp " style="margin-bottom: 25px;">
+<div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUp " style="margin-bottom: 30px; margin-top:25px">
 <video style="border-radius: 5px;" class="video-js" controls preload="auto" poster="/videos/tonirovka/22.jpg" data-setup='{ "fluid": true }'>
   <source src="/videos/tonirovka/tonir1.mp4" type="video/mp4">
 </div>
 
-<div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUp" style="margin-bottom: 25px;">
-<video style="border-radius: 5px;" class="video-js" controls preload="auto" poster="/videos/tonirovka/123.jpg" data-setup='{ "fluid": true }'>
+<div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUp" style="margin-bottom: 10px;">
+<video style="border-radius: 5px;" class="video-js" controls preload="auto" poster="/videos/tonirovka/444.jpg" data-setup='{ "fluid": true }'>
 <source src="/videos/tonirovka/tonir1.mp4" type="video/mp4">
 </video>
 </div>
@@ -120,8 +122,11 @@ tabButtons.forEach(button => {
 .video-js .vjs-big-play-button {
     font-size: 4em;
     width: 2em;
+    height: 2em;
+    line-height: 2em;
     margin-left: -1.1em;
     background-color: rgb(0 0 0 / 70%);
+    border-radius: 100px;
  
 }
 
