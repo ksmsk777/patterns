@@ -174,11 +174,21 @@
     }
 
     .video-js .vjs-control-bar {
-      font-size: 1.3em;
+      font-size: 1.8em;
       background-color: rgb(0 0 0 / 44%);
     }
-  /* Для экранов до 440px – дополнительная корректировка */
-@media (max-width: 440px) {
+  /* Для экранов до 484px – дополнительная корректировка */
+@media (max-width: 530px) {
+  .video-js .vjs-control-bar {
+      font-size: 1.3em;
+    }
+}
+  /* Для экранов до 484px – дополнительная корректировка */
+@media (max-width: 484px) {
+
+.video-js .vjs-control-bar {
+      font-size: 1.3em;
+    }
 
 .video-js .vjs-time-control {
     display: none;
