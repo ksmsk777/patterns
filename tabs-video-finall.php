@@ -3,7 +3,7 @@
 <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
-<div class="tabs wow fadeInUp" data-wow-duration="6s">
+<div class="tabs wow fadeInUp">
   <button class="tab-button active" data-tab="tab1">Видео</button>
   <button class="tab-button" data-tab="tab2">YouTube</button>
 </div>
@@ -172,5 +172,36 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     }
+
+    .video-js .vjs-control-bar {
+      font-size: 1.3em;
+      background-color: rgb(0 0 0 / 44%);
+    }
+  /* Для экранов до 440px – дополнительная корректировка */
+@media (max-width: 440px) {
+
+.video-js .vjs-time-control {
+    display: none;
+}
+.video-js .vjs-picture-in-picture-control {
+  
+    display: none;
+}
+}
+@media (max-width: 280px) {
+
+.video-js .vjs-time-control {
+    display: none;
+}
+.video-js .vjs-picture-in-picture-control {
+  
+    display: none;
+}
+.video-js .vjs-progress-control {
+  display: none;
+}
+  
+
+}
 </style>
 
